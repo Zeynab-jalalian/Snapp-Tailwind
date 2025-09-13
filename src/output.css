@@ -10,9 +10,11 @@
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-bold: 700;
     --radius-sm: 0.25rem;
+    --radius-lg: 0.5rem;
     --font-iran_Light: iran_Light;
     --text-clamp: clamp(0.7rem, 1vw, 1rem);
     --color-green_snap: #21aa58;
+    --color-text_nav: #414141;
   }
 }
 @layer base {
@@ -164,8 +166,17 @@
   }
 }
 @layer utilities {
+  .absolute {
+    position: absolute;
+  }
   .relative {
     position: relative;
+  }
+  .top-6 {
+    top: calc(var(--spacing) * 6);
+  }
+  .top-14 {
+    top: calc(var(--spacing) * 14);
   }
   .m-auto {
     margin: auto;
@@ -194,6 +205,9 @@
   .h-\[70px\] {
     height: 70px;
   }
+  .w-\[170px\] {
+    width: 170px;
+  }
   .w-full {
     width: 100%;
   }
@@ -215,6 +229,9 @@
   .list-none {
     list-style-type: none;
   }
+  .flex-col {
+    flex-direction: column;
+  }
   .flex-nowrap {
     flex-wrap: nowrap;
   }
@@ -223,6 +240,9 @@
   }
   .items-center {
     align-items: center;
+  }
+  .items-start {
+    align-items: flex-start;
   }
   .justify-between {
     justify-content: space-between;
@@ -233,6 +253,9 @@
   .justify-start {
     justify-content: flex-start;
   }
+  .rounded-lg {
+    border-radius: var(--radius-lg);
+  }
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -240,6 +263,9 @@
   .border-b-1 {
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
+  }
+  .bg-white {
+    background-color: var(--color-white);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
@@ -253,6 +279,13 @@
   .text-clamp {
     font-size: var(--text-clamp);
   }
+  .leading-9 {
+    --tw-leading: calc(var(--spacing) * 9);
+    line-height: calc(var(--spacing) * 9);
+  }
+  .text-text_nav {
+    color: var(--color-text_nav);
+  }
   .underline {
     text-decoration-line: underline;
   }
@@ -262,6 +295,13 @@
   }
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
+  }
+  .group-hover\:flex {
+    &:is(:where(.group):hover *) {
+      @media (hover: hover) {
+        display: flex;
+      }
+    }
   }
   .hover\:text-green_snap {
     &:hover {
@@ -351,6 +391,10 @@
   inherits: false;
   initial-value: solid;
 }
+@property --tw-leading {
+  syntax: "*";
+  inherits: false;
+}
 @property --tw-outline-style {
   syntax: "*";
   inherits: false;
@@ -418,6 +462,7 @@
       --tw-skew-x: initial;
       --tw-skew-y: initial;
       --tw-border-style: solid;
+      --tw-leading: initial;
       --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
