@@ -3,15 +3,16 @@
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {
-    --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-      "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-      "Courier New", monospace;
+    --color-gray-200: oklch(92.8% 0.006 264.531);
+    --color-white: #fff;
+    --spacing: 0.25rem;
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-bold: 700;
-    --default-font-family: var(--font-sans);
-    --default-mono-font-family: var(--font-mono);
+    --radius-sm: 0.25rem;
+    --font-iran_Light: iran_Light;
+    --text-clamp: clamp(0.7rem, 1vw, 1rem);
+    --color-green_snap: #21aa58;
   }
 }
 @layer base {
@@ -163,8 +164,35 @@
   }
 }
 @layer utilities {
+  .relative {
+    position: relative;
+  }
+  .m-auto {
+    margin: auto;
+  }
+  .mx-2 {
+    margin-inline: calc(var(--spacing) * 2);
+  }
+  .mx-5 {
+    margin-inline: calc(var(--spacing) * 5);
+  }
+  .mx-7 {
+    margin-inline: calc(var(--spacing) * 7);
+  }
+  .flex {
+    display: flex;
+  }
+  .hidden {
+    display: none;
+  }
   .table {
     display: table;
+  }
+  .h-\[55px\] {
+    height: 55px;
+  }
+  .h-\[70px\] {
+    height: 70px;
   }
   .w-full {
     width: 100%;
@@ -175,8 +203,35 @@
   .transform {
     transform: var(--tw-rotate-x,) var(--tw-rotate-y,) var(--tw-rotate-z,) var(--tw-skew-x,) var(--tw-skew-y,);
   }
+  .cursor-default {
+    cursor: default;
+  }
+  .cursor-pointer {
+    cursor: pointer;
+  }
   .resize {
     resize: both;
+  }
+  .list-none {
+    list-style-type: none;
+  }
+  .flex-nowrap {
+    flex-wrap: nowrap;
+  }
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .items-center {
+    align-items: center;
+  }
+  .justify-between {
+    justify-content: space-between;
+  }
+  .justify-center {
+    justify-content: center;
+  }
+  .justify-start {
+    justify-content: flex-start;
   }
   .border {
     border-style: var(--tw-border-style);
@@ -186,13 +241,17 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
-  .text-3xl {
-    font-size: var(--text-3xl);
-    line-height: var(--tw-leading, var(--text-3xl--line-height));
+  .px-4 {
+    padding-inline: calc(var(--spacing) * 4);
   }
-  .font-bold {
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
+  .py-1 {
+    padding-block: calc(var(--spacing) * 1);
+  }
+  .font-iran_Light {
+    font-family: var(--font-iran_Light);
+  }
+  .text-clamp {
+    font-size: var(--text-clamp);
   }
   .underline {
     text-decoration-line: underline;
@@ -204,15 +263,67 @@
   .filter {
     filter: var(--tw-blur,) var(--tw-brightness,) var(--tw-contrast,) var(--tw-grayscale,) var(--tw-hue-rotate,) var(--tw-invert,) var(--tw-saturate,) var(--tw-sepia,) var(--tw-drop-shadow,);
   }
+  .hover\:text-green_snap {
+    &:hover {
+      @media (hover: hover) {
+        color: var(--color-green_snap);
+      }
+    }
+  }
   .sm\:w-full {
-    @media (width >= 40rem) {
+    @media (width >= 640px) {
       width: 100%;
     }
   }
+  .md\:flex {
+    @media (width >= 840px) {
+      display: flex;
+    }
+  }
+  .md\:hidden {
+    @media (width >= 840px) {
+      display: none;
+    }
+  }
+  .md\:h-\[90px\] {
+    @media (width >= 840px) {
+      height: 90px;
+    }
+  }
   .md\:w-4\/5 {
-    @media (width >= 48rem) {
+    @media (width >= 840px) {
       width: calc(4/5 * 100%);
     }
+  }
+  .dark\:rounded-sm {
+    &:is(.dark *) {
+      border-radius: var(--radius-sm);
+    }
+  }
+  .dark\:bg-white {
+    &:is(.dark *) {
+      background-color: var(--color-white);
+    }
+  }
+  .dark\:text-white {
+    &:is(.dark *) {
+      color: var(--color-white);
+    }
+  }
+}
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+@layer base {
+  @font-face {
+    font-family: 'iran_Bold';
+    src: url(fonts/IRANSansXFaNum-Bold.ttf) format('truetype');
+  }
+  @font-face {
+    font-family: 'iran_Light';
+    src: url(fonts/IRANSansXFaNum-Light.ttf) format('truetype');
   }
 }
 @property --tw-rotate-x {
@@ -239,10 +350,6 @@
   syntax: "*";
   inherits: false;
   initial-value: solid;
-}
-@property --tw-font-weight {
-  syntax: "*";
-  inherits: false;
 }
 @property --tw-outline-style {
   syntax: "*";
@@ -311,7 +418,6 @@
       --tw-skew-x: initial;
       --tw-skew-y: initial;
       --tw-border-style: solid;
-      --tw-font-weight: initial;
       --tw-outline-style: solid;
       --tw-blur: initial;
       --tw-brightness: initial;
