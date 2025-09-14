@@ -6,15 +6,21 @@
     --color-gray-200: oklch(92.8% 0.006 264.531);
     --color-white: #fff;
     --spacing: 0.25rem;
-    --text-3xl: 1.875rem;
-    --text-3xl--line-height: calc(2.25 / 1.875);
-    --font-weight-bold: 700;
+    --text-xs: 0.75rem;
+    --text-xs--line-height: calc(1 / 0.75);
+    --text-sm: 0.875rem;
+    --text-sm--line-height: calc(1.25 / 0.875);
+    --radius-xs: 0.125rem;
     --radius-sm: 0.25rem;
     --radius-lg: 0.5rem;
+    --font-iran_Bold: iran_Bold;
     --font-iran_Light: iran_Light;
     --text-clamp: clamp(0.7rem, 1vw, 1rem);
     --color-green_snap: #21aa58;
     --color-text_nav: #414141;
+    --color-bg_nav_res: rgba(0, 0, 0, 0.5);
+    --color-bg_dark1: #242424;
+    --color-bg_dark2: #000;
   }
 }
 @layer base {
@@ -169,14 +175,23 @@
   .absolute {
     position: absolute;
   }
+  .fixed {
+    position: fixed;
+  }
   .relative {
     position: relative;
+  }
+  .sticky {
+    position: sticky;
   }
   .top-6 {
     top: calc(var(--spacing) * 6);
   }
   .top-14 {
     top: calc(var(--spacing) * 14);
+  }
+  .z-50 {
+    z-index: 50;
   }
   .m-auto {
     margin: auto;
@@ -189,6 +204,12 @@
   }
   .mx-7 {
     margin-inline: calc(var(--spacing) * 7);
+  }
+  .my-2 {
+    margin-block: calc(var(--spacing) * 2);
+  }
+  .my-4 {
+    margin-block: calc(var(--spacing) * 4);
   }
   .flex {
     display: flex;
@@ -204,6 +225,15 @@
   }
   .h-\[70px\] {
     height: 70px;
+  }
+  .h-screen {
+    height: 100vh;
+  }
+  .w-11 {
+    width: calc(var(--spacing) * 11);
+  }
+  .w-11\/12 {
+    width: calc(11/12 * 100%);
   }
   .w-\[170px\] {
     width: 170px;
@@ -247,11 +277,14 @@
   .justify-between {
     justify-content: space-between;
   }
-  .justify-center {
-    justify-content: center;
-  }
   .justify-start {
     justify-content: flex-start;
+  }
+  .divide-solid {
+    :where(& > :not(:last-child)) {
+      --tw-border-style: solid;
+      border-style: solid;
+    }
   }
   .rounded-lg {
     border-radius: var(--radius-lg);
@@ -264,6 +297,17 @@
     border-bottom-style: var(--tw-border-style);
     border-bottom-width: 1px;
   }
+  .border-l {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 1px;
+  }
+  .border-l-1 {
+    border-left-style: var(--tw-border-style);
+    border-left-width: 1px;
+  }
+  .bg-bg_nav_res {
+    background-color: var(--color-bg_nav_res);
+  }
   .bg-white {
     background-color: var(--color-white);
   }
@@ -273,8 +317,19 @@
   .py-1 {
     padding-block: calc(var(--spacing) * 1);
   }
+  .font-iran_Bold {
+    font-family: var(--font-iran_Bold);
+  }
   .font-iran_Light {
     font-family: var(--font-iran_Light);
+  }
+  .text-sm {
+    font-size: var(--text-sm);
+    line-height: var(--tw-leading, var(--text-sm--line-height));
+  }
+  .text-xs {
+    font-size: var(--text-xs);
+    line-height: var(--tw-leading, var(--text-xs--line-height));
   }
   .text-clamp {
     font-size: var(--text-clamp);
@@ -282,6 +337,9 @@
   .leading-9 {
     --tw-leading: calc(var(--spacing) * 9);
     line-height: calc(var(--spacing) * 9);
+  }
+  .text-green_snap {
+    color: var(--color-green_snap);
   }
   .text-text_nav {
     color: var(--color-text_nav);
@@ -303,11 +361,35 @@
       }
     }
   }
+  .group-hover\/item\:flex {
+    &:is(:where(.group\/item):hover *) {
+      @media (hover: hover) {
+        display: flex;
+      }
+    }
+  }
+  .group-hover\/item_about\:flex {
+    &:is(:where(.group\/item_about):hover *) {
+      @media (hover: hover) {
+        display: flex;
+      }
+    }
+  }
   .hover\:text-green_snap {
     &:hover {
       @media (hover: hover) {
         color: var(--color-green_snap);
       }
+    }
+  }
+  .sm\:flex {
+    @media (width >= 640px) {
+      display: flex;
+    }
+  }
+  .sm\:w-1\/2 {
+    @media (width >= 640px) {
+      width: calc(1/2 * 100%);
     }
   }
   .sm\:w-full {
@@ -338,6 +420,21 @@
   .dark\:rounded-sm {
     &:is(.dark *) {
       border-radius: var(--radius-sm);
+    }
+  }
+  .dark\:rounded-xs {
+    &:is(.dark *) {
+      border-radius: var(--radius-xs);
+    }
+  }
+  .dark\:bg-bg_dark1 {
+    &:is(.dark *) {
+      background-color: var(--color-bg_dark1);
+    }
+  }
+  .dark\:bg-bg_dark2 {
+    &:is(.dark *) {
+      background-color: var(--color-bg_dark2);
     }
   }
   .dark\:bg-white {
