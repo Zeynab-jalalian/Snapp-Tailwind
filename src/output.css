@@ -260,6 +260,9 @@
   .mt-6 {
     margin-top: calc(var(--spacing) * 6);
   }
+  .mt-7 {
+    margin-top: calc(var(--spacing) * 7);
+  }
   .mt-8 {
     margin-top: calc(var(--spacing) * 8);
   }
@@ -268,6 +271,9 @@
   }
   .mb-3 {
     margin-bottom: calc(var(--spacing) * 3);
+  }
+  .mb-10 {
+    margin-bottom: calc(var(--spacing) * 10);
   }
   .flex {
     display: flex;
@@ -302,6 +308,9 @@
   }
   .w-11\/12 {
     width: calc(11/12 * 100%);
+  }
+  .w-\[80px\] {
+    width: 80px;
   }
   .w-\[170px\] {
     width: 170px;
@@ -459,6 +468,9 @@
   }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
+  }
+  .py-10 {
+    padding-block: calc(var(--spacing) * 10);
   }
   .py-12 {
     padding-block: calc(var(--spacing) * 12);
@@ -665,6 +677,11 @@
       line-height: 60px;
     }
   }
+  .lg\:h-\[66px\] {
+    @media (width >= 1024px) {
+      height: 66px;
+    }
+  }
   .lg\:w-1\/2 {
     @media (width >= 1024px) {
       width: calc(1/2 * 100%);
@@ -673,6 +690,16 @@
   .lg\:w-3\/4 {
     @media (width >= 1024px) {
       width: calc(3/4 * 100%);
+    }
+  }
+  .lg\:w-\[48\%\] {
+    @media (width >= 1024px) {
+      width: 48%;
+    }
+  }
+  .lg\:w-\[120px\] {
+    @media (width >= 1024px) {
+      width: 120px;
     }
   }
   .lg\:flex-row {
