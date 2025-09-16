@@ -814,6 +814,11 @@
       background-color: var(--color-white);
     }
   }
+  .dark\:stroke-white {
+    &:is(.dark *) {
+      stroke: var(--color-white);
+    }
+  }
   .dark\:p-4 {
     &:is(.dark *) {
       padding: calc(var(--spacing) * 4);
